@@ -19,14 +19,44 @@
         }
     ],
     "paths": {
+        "/auth/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Log out",
+                "description": "Log Out",
+                "operationId": "logout",
+                "requestBody": {},
+                "responses": {
+                    "204": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/auth/login": {
             "post": {
                 "tags": [
                     "Auth"
                 ],
-                "summary": "login",
-                "description": "login",
-                "operationId": "login",
+                "summary": "Login",
+                "description": "Login",
+                "operationId": "Login",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -209,6 +239,15 @@
             },
             "403": {
                 "description": "Forbidden"
+            }
+        },
+        "securitySchemes": {
+            "bearer": {
+                "type": "http",
+                "description": "Authorization token obtained from logging in.",
+                "name": "Authorization",
+                "in": "header",
+                "scheme": "bearer"
             }
         }
     }

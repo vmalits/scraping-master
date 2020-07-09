@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * @OA\Post(
  *      path="/auth/login",
- *      operationId="login",
+ *      operationId="Login",
  *      tags={"Auth"},
- *      summary="login",
- *      description="login",
+ *      summary="Login",
+ *      description="Login",
  *      @OA\RequestBody(
  *          required=true,
  *          @OA\JsonContent(ref="#/components/schemas/LoginRequest")
