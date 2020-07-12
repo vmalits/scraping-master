@@ -71,15 +71,15 @@ class RegisterControllerTest extends TestCase
 
     public function test_a_confirmation_email_is_send_upon_registration()
     {
-
         \Notification::fake();
-        $user = $this->json('POST', 'api/auth/register', [
+        $this->json('POST', 'api/auth/register', [
             'first_name' => $firstName = 'John',
             'last_name' => $lastName = 'White',
             'email' => $email = 'john_white@gmail.com',
             'password' => 'password',
             'password_confirmation' => 'password',
         ]);
-        \Notification::assertSentTo($user,VerifyEmail::class);
+        $user = User::first();
+        \Notification::assertSentTo($user, VerifyEmail::class);
     }
 }
