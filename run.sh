@@ -2,4 +2,4 @@
 
 cd laradock
 
-docker-compose up -d nginx postgres workspace
+docker-compose up -d nginx postgres mailhog workspace

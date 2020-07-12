@@ -3,6 +3,7 @@
 namespace Tests\Feature\Controller\Api\Auth;
 
 use App\Models\User;
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -66,5 +67,19 @@ class RegisterControllerTest extends TestCase
             'last_name' => $lastName,
             'email' => $email
         ]);
+    }
+
+    public function test_a_confirmation_email_is_send_upon_registration()
+    {
+
+        \Notification::fake();
+        $user = $this->json('POST', 'api/auth/register', [
+            'first_name' => $firstName = 'John',
+            'last_name' => $lastName = 'White',
+            'email' => $email = 'john_white@gmail.com',
+            'password' => 'password',
+            'password_confirmation' => 'password',
+        ]);
+        \Notification::assertSentTo($user,VerifyEmail::class);
     }
 }

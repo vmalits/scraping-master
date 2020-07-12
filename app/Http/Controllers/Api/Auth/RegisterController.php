@@ -51,13 +51,12 @@ class RegisterController extends Controller
         User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
-            'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password)
-        ]);
+        ])->sendEmailVerificationNotification();
 
         return response()->json([
-            'message' => 'Registration successfully'
+            'message' => 'Please confirm yourself by clicking on verify user button sent to you on your email'
         ], Response::HTTP_CREATED);
     }
 }
