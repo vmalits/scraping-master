@@ -94,6 +94,9 @@ class VerificationController extends Controller
      *      tags={"Auth"},
      *      summary="Resend email",
      *      description="Resend email",
+     *      security={
+     *          {"bearer": {}}
+     *      },
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",

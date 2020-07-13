@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::fallback(function (){
+Route::fallback(function () {
     return response()->json([
         'message' => 'This route does not exists!'
     ]);

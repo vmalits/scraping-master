@@ -231,7 +231,12 @@
                     "403": {
                         "description": "Forbidden"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
             }
         }
     },
