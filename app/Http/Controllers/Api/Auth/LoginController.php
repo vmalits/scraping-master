@@ -50,6 +50,12 @@ class LoginController extends Controller
             ]);
         }
 
+        if (null === auth()->user()->email_verified_at) {
+            return response()->json([
+                'message' => 'Please verify email!'
+            ], Response::HTTP_UNAUTHORIZED);
+        }
+
         return response()->json([
             'token' => auth()->user()->createToken('personal token')->plainTextToken
         ], Response::HTTP_OK);
