@@ -10,11 +10,6 @@ class LoginControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function setUp(): void
-    {
-        parent::setUp();
-    }
-
     public function test_it_requires_a_email()
     {
         $response = $this->json('POST', 'api/auth/register');
@@ -39,12 +34,24 @@ class LoginControllerTest extends TestCase
 
     public function test_it_returns_a_token_if_credentials_do_match()
     {
-        $this->withExceptionHandling();
         $user = factory(User::class)->create();
         $response = $this->json('POST', 'api/auth/login', [
             'email' => $user->email,
             'password' => 'password'
         ]);
         $response->assertJsonStructure(['token']);
+    }
+
+    public function test_it_returns_a_unauthorized_error_if_email_is_not_verified()
+    {
+        $user = factory(User::class)->create([
+            'email_verified_at' => null
+        ]);
+        $response = $this->json('POST', 'api/auth/login', [
+            'email' => $user->email,
+            'password' => 'password'
+        ]);
+        $response->assertStatus(401);
+        $response->assertJsonStructure(['message']);
     }
 }
