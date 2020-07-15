@@ -5,14 +5,14 @@ namespace App\Virtual\Resources;
 
 /**
  * @OA\Schema(
- *     title="PrivateUserResource",
- *     description="Private user resource",
+ *     title="CampaignResource",
+ *     description="Campaign resource",
  *     @OA\Xml(
- *         name="PrivateUserResource"
+ *         name="CampaignResource"
  *     )
  * )
  */
-class PrivateUserResource
+class CampaignResource
 {
     /**
      * @OA\Property(
@@ -20,7 +20,7 @@ class PrivateUserResource
      *     description="Data wrapper"
      * )
      *
-     * @var \App\Virtual\Models\User[]
+     * @var \App\Virtual\Models\Campaign[]
      */
     private $data;
 }

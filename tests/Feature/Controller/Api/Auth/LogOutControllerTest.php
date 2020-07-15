@@ -15,7 +15,6 @@ class LogOutControllerTest extends TestCase
     {
         $response = $this->json('POST', 'api/auth/logout');
         $response->assertStatus(401);
-        $response->assertJsonStructure(['message']);
     }
 
     public function test_it_logout_a_user()

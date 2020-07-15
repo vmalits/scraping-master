@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PrivateUserResource extends JsonResource
+class CampaignResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -13,14 +13,11 @@ class PrivateUserResource extends JsonResource
      * @param Request $request
      * @return array
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
             'id' => $this->id,
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
-            'email' => $this->email,
-            'email_verified_at' => (string)$this->email_verified_at,
+            'name' => $this->name,
             'created_at' => (string)$this->created_at,
             'updated_at' => (string)$this->updated_at
         ];

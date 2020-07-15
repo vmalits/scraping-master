@@ -20,3 +20,7 @@ Route::group([
         Route::get('me', 'MeController');
     });
 });
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('campaigns', 'Api\CampaignController');
+});
