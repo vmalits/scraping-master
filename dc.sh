@@ -1,5 +1,10 @@
 #!/bin/bash
+# Script runs commands inside php docker container
 
-cd laradock
-
-docker-compose exec workspace bash
+if [ $# -gt 0 ]; then
+    # Script has arguments, pass them to the command
+    docker-compose exec --user www-data php-fpm $@
+else
+    # No arguments passed, execute bash command
+    docker-compose exec --user www-data php-fpm bash
+fi
