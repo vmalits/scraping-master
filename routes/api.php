@@ -23,4 +23,6 @@ Route::group([
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('campaigns', 'Api\CampaignController');
+    Route::get('proxies/available-types', 'Api\ProxyController@availableTypes');
+    Route::apiResource('proxies', 'Api\ProxyController');
 });

@@ -463,6 +463,282 @@
                     }
                 ]
             }
+        },
+        "/proxies": {
+            "get": {
+                "tags": [
+                    "Proxy"
+                ],
+                "summary": "Get proxy list",
+                "description": "Returns proxy list",
+                "operationId": "getProxyList",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ip",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "port",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProxyResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Proxy"
+                ],
+                "summary": "Store new proxy",
+                "description": "Returns proxy data",
+                "operationId": "storeProxy",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProxyRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Proxy"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/proxy/{id}": {
+            "get": {
+                "tags": [
+                    "Proxy"
+                ],
+                "summary": "Get proxy information",
+                "description": "Returns proxy data",
+                "operationId": "getProxyById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Proxy id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Proxy"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Proxy"
+                ],
+                "summary": "Update existing proxy",
+                "description": "Returns updated proxy data",
+                "operationId": "updateProxy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Proxy id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProxyRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Proxy"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/proxies/{id}": {
+            "delete": {
+                "tags": [
+                    "Proxy"
+                ],
+                "summary": "Delete existing proxy",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteProxy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Proxy id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/proxies/available-types": {
+            "get": {
+                "tags": [
+                    "Proxy"
+                ],
+                "summary": "Get types list",
+                "description": "Returns types list",
+                "operationId": "getProxyTypes",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
         }
     },
     "components": {
@@ -529,6 +805,35 @@
                 },
                 "type": "object"
             },
+            "Proxy": {
+                "title": "Proxy",
+                "description": "Proxy model",
+                "properties": {
+                    "id": {
+                        "title": "ID",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "ip": {
+                        "title": "ip",
+                        "description": "ip",
+                        "type": "string"
+                    },
+                    "port": {
+                        "title": "port",
+                        "description": "port",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "type",
+                        "description": "type",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
             "User": {
                 "title": "User",
                 "description": "User model",
@@ -576,6 +881,28 @@
                         "type": "string",
                         "format": "datetime",
                         "example": "2020-01-27 17:50:45"
+                    }
+                },
+                "type": "object"
+            },
+            "ProxyRequest": {
+                "title": "Proxy request",
+                "description": "request body data",
+                "properties": {
+                    "type": {
+                        "title": "type",
+                        "type": "string",
+                        "example": "Socks5"
+                    },
+                    "ip": {
+                        "title": "ip",
+                        "type": "string",
+                        "example": "72.49.49.11"
+                    },
+                    "port": {
+                        "title": "port",
+                        "type": "string",
+                        "example": "3234"
                     }
                 },
                 "type": "object"
@@ -651,6 +978,24 @@
                 "type": "object",
                 "xml": {
                     "name": "PrivateUserResource"
+                }
+            },
+            "ProxyResource": {
+                "title": "ProxyResource",
+                "description": "Proxy resource",
+                "properties": {
+                    "data": {
+                        "title": "Data",
+                        "description": "Data wrapper",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Proxy"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "ProxyResource"
                 }
             }
         },

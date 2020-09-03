@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 7.17.1 on 2020-07-12 13:46:43.
+ * Generated for Laravel 7.19.1 on 2020-09-03 17:35:01.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -5477,7 +5477,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Assert if a event was dispatched a number of times.
+         * Assert if an event was dispatched a number of times.
          *
          * @param string $event
          * @param int $times
