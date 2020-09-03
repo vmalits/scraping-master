@@ -20,6 +20,19 @@ services:
       ports:
         - "8892:5432"
 
+    postgres-testing:
+      image: postgres:12-alpine
+      container_name: scraping-master-postgres-test
+      working_dir: /application
+      volumes:
+        - .:/application
+      environment:
+        - POSTGRES_USER=test
+        - POSTGRES_PASSWORD=test
+        - POSTGRES_DB=scraping-master-test
+      ports:
+        - "8893:5432"
+
     webserver:
       image: nginx:alpine
       container_name: scraping-master-webserver

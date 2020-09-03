@@ -11,21 +11,21 @@ class MeControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_fails_if_user_is_not_authenticated()
+    public function test_it_fails_if_user_is_not_authenticated(): void
     {
-        $response = $this->json('GET','/api/auth/me');
-        $response->assertStatus(401);
+        $response = $this->json('GET', '/api/auth/me');
+        $response->assertUnauthorized();
     }
 
-    public function test_it_returns_user_data()
+    public function test_it_returns_user_data(): void
     {
         Sanctum::actingAs(
             factory(User::class)->create(),
             ['*']
         );
 
-        $response = $this->json('GET','/api/auth/me');
-        $response->assertStatus(200);
+        $response = $this->json('GET', '/api/auth/me');
+        $response->assertOk();
         $response->assertJsonStructure(['data']);
     }
 }

@@ -10,19 +10,19 @@ class LoginControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_requires_a_email()
+    public function test_it_requires_a_email(): void
     {
         $response = $this->json('POST', 'api/auth/register');
         $response->assertJsonValidationErrors('email');
     }
 
-    public function test_it_requires_a_password()
+    public function test_it_requires_a_password(): void
     {
         $response = $this->json('POST', 'api/auth/register');
         $response->assertJsonValidationErrors('password');
     }
 
-    public function test_it_returns_errors_if_credentials_dont_match()
+    public function test_it_returns_errors_if_credentials_dont_match(): void
     {
         $user = factory(User::class)->create();
         $response = $this->json('POST', 'api/auth/login', [
@@ -32,26 +32,32 @@ class LoginControllerTest extends TestCase
         $response->assertJsonValidationErrors('email');
     }
 
-    public function test_it_returns_a_token_if_credentials_do_match()
+    public function test_it_returns_a_token_if_credentials_do_match(): void
     {
-        $user = factory(User::class)->create();
-        $response = $this->json('POST', 'api/auth/login', [
-            'email' => $user->email,
-            'password' => 'password'
+        factory(User::class)->create([
+            'email' => $email = 'test@gmail.com',
+            'password' => $password = 'password'
         ]);
+        $response = $this->json('POST', 'api/auth/login', [
+            'email' => $email,
+            'password' => $password
+        ]);
+        $response->assertOk();
         $response->assertJsonStructure(['token']);
     }
 
-    public function test_it_returns_a_unauthorized_error_if_email_is_not_verified()
+    public function test_it_returns_a_unauthorized_error_if_email_is_not_verified(): void
     {
-        $user = factory(User::class)->create([
+        factory(User::class)->create([
+            'email' => $email = 'test@gmail.com',
+            'password' => $password = 'password',
             'email_verified_at' => null
         ]);
         $response = $this->json('POST', 'api/auth/login', [
-            'email' => $user->email,
-            'password' => 'password'
+            'email' => $email,
+            'password' => $password
         ]);
-        $response->assertStatus(401);
-        $response->assertJsonStructure(['message']);
+
+        $response->assertJsonFragment(['message' => 'Please verify email!']);
     }
 }

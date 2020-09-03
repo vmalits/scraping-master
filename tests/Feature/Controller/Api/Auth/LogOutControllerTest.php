@@ -11,13 +11,13 @@ class LogOutControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_returns_a_unauthentication_error_if_user_is_not_logged()
+    public function test_it_returns_a_unauthentication_error_if_user_is_not_logged(): void
     {
         $response = $this->json('POST', 'api/auth/logout');
-        $response->assertStatus(401);
+        $response->assertUnauthorized();
     }
 
-    public function test_it_logout_a_user()
+    public function test_it_logout_a_user(): void
     {
         Sanctum::actingAs(
             factory(User::class)->create(),
@@ -25,6 +25,6 @@ class LogOutControllerTest extends TestCase
         );
 
         $response = $this->json('POST', 'api/auth/logout');
-        $response->assertStatus(204);
+        $response->assertNoContent();
     }
 }
