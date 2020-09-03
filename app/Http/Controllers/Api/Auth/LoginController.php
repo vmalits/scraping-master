@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Api\Controller;
 use App\Http\Requests\LoginRequest;
-use Illuminate\Validation\ValidationException;
+use App\Services\AuthService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -41,23 +41,12 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class LoginController extends Controller
 {
-    public function __invoke(LoginRequest $request): JsonResponse
+    public function __invoke(LoginRequest $request, AuthService $authService): JsonResponse
     {
-        $credentials = $request->only('email', 'password');
-        if (!$token = \auth()->attempt($credentials)) {
-            throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
-            ]);
-        }
-
-        if (null === auth()->user()->email_verified_at) {
-            return response()->json([
-                'message' => 'Please verify email!'
-            ], Response::HTTP_UNAUTHORIZED);
-        }
+        $token = $authService->login($request->only('email', 'password'));
 
         return response()->json([
-            'token' => auth()->user()->createToken('personal token')->plainTextToken
+            'token' => $token
         ], Response::HTTP_OK);
     }
 }

@@ -11,25 +11,25 @@ class RegisterControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_requires_a_first_name()
+    public function test_it_requires_a_first_name(): void
     {
         $response = $this->json('POST', 'api/auth/register');
         $response->assertJsonValidationErrors('first_name');
     }
 
-    public function test_it_requires_a_last_name()
+    public function test_it_requires_a_last_name(): void
     {
         $response = $this->json('POST', 'api/auth/register');
         $response->assertJsonValidationErrors('last_name');
     }
 
-    public function test_it_requires_a_email()
+    public function test_it_requires_a_email(): void
     {
         $response = $this->json('POST', 'api/auth/register');
         $response->assertJsonValidationErrors('email');
     }
 
-    public function test_it_requires_a_valid_email()
+    public function test_it_requires_a_valid_email(): void
     {
         $response = $this->json('POST', 'api/auth/register', [
             'email' => 'some text'
@@ -37,7 +37,7 @@ class RegisterControllerTest extends TestCase
         $response->assertJsonValidationErrors('email');
     }
 
-    public function test_it_requires_a_unique_email()
+    public function test_it_requires_a_unique_email(): void
     {
         $user = factory(User::class)->create();
         $response = $this->json('POST', 'api/auth/register', [
@@ -46,13 +46,13 @@ class RegisterControllerTest extends TestCase
         $response->assertJsonValidationErrors('email');
     }
 
-    public function test_it_requires_a_password()
+    public function test_it_requires_a_password(): void
     {
         $response = $this->json('POST', 'api/auth/register');
         $response->assertJsonValidationErrors('password');
     }
 
-    public function test_it_registers_a_user()
+    public function test_it_registers_a_user(): void
     {
         $this->json('POST', 'api/auth/register', [
             'first_name' => $firstName = 'John',
@@ -69,7 +69,7 @@ class RegisterControllerTest extends TestCase
         ]);
     }
 
-    public function test_a_confirmation_email_is_send_upon_registration()
+    public function test_a_confirmation_email_is_send_upon_registration(): void
     {
         \Notification::fake();
         $this->json('POST', 'api/auth/register', [

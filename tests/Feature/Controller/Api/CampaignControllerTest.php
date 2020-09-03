@@ -12,13 +12,13 @@ class CampaignControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_fails_if_user_is_not_authenticated()
+    public function test_it_fails_if_user_is_not_authenticated(): void
     {
         $response = $this->getJson('/api/campaigns');
-        $response->assertStatus(401);
+        $response->assertUnauthorized();
     }
 
-    public function test_it_returns_a_collection_of_campaigns()
+    public function test_it_returns_a_collection_of_campaigns(): void
     {
         Sanctum::actingAs(
             factory(User::class)->create(),
@@ -28,10 +28,10 @@ class CampaignControllerTest extends TestCase
         $this->getJson('/api/campaigns')
             ->assertJsonFragment([
                 'name' => $campaign->name
-            ])->assertStatus(200);
+            ])->assertOk();
     }
 
-    public function test_it_adds_new_campaign()
+    public function test_it_adds_new_campaign(): void
     {
         Sanctum::actingAs(
             factory(User::class)->create(),
@@ -40,13 +40,13 @@ class CampaignControllerTest extends TestCase
 
         $this->postJson('/api/campaigns', [
             'name' => $name = 'test campaign'
-        ])->assertStatus(201);
+        ])->assertCreated();
         $this->assertDatabaseHas('campaigns', [
             'name' => $name
         ]);
     }
 
-    public function test_it_updates_campaign()
+    public function test_it_updates_campaign(): void
     {
         Sanctum::actingAs(
             factory(User::class)->create(),
@@ -64,7 +64,7 @@ class CampaignControllerTest extends TestCase
         ]);
     }
 
-    public function test_it_shows_one_campaign_by_id()
+    public function test_it_shows_one_campaign_by_id(): void
     {
         Sanctum::actingAs(
             factory(User::class)->create(),
@@ -74,14 +74,14 @@ class CampaignControllerTest extends TestCase
         $campaign = factory(Campaign::class)->create();
 
         $response = $this->getJson('/api/campaigns/' . $campaign->id);
-        $response->assertStatus(200);
+        $response->assertOk();
         $response->assertJsonFragment([
             'id' => $campaign->id,
             'name' => $campaign->name
         ]);
     }
 
-    public function test_it_returns_error_if_campaign_with_this_id_not_found()
+    public function test_it_returns_error_if_campaign_with_this_id_not_found(): void
     {
         Sanctum::actingAs(
             factory(User::class)->create(),
@@ -89,10 +89,10 @@ class CampaignControllerTest extends TestCase
         );
 
         $response = $this->getJson('/api/campaigns/' . 1);
-        $response->assertStatus(404);
+        $response->assertNotFound();
     }
 
-    public function test_it_deletes_the_campaign()
+    public function test_it_deletes_the_campaign(): void
     {
         Sanctum::actingAs(
             factory(User::class)->create(),
@@ -101,6 +101,6 @@ class CampaignControllerTest extends TestCase
 
         $campaign = factory(Campaign::class)->create();
         $response = $this->deleteJson('/api/campaigns/' . $campaign->id);
-        $response->assertStatus(204);
+        $response->assertNoContent();
     }
 }
