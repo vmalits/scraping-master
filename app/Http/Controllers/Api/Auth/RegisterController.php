@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Api\Controller;
 use App\Http\Requests\RegisterRequest;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use App\Services\AuthService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -46,14 +45,9 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class RegisterController extends Controller
 {
-    public function __invoke(RegisterRequest $request): JsonResponse
+    public function __invoke(RegisterRequest $request, AuthService $authService): JsonResponse
     {
-        User::create([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password)
-        ])->sendEmailVerificationNotification();
+        $authService->register($request->validated());
 
         return response()->json([
             'message' => 'Please confirm yourself by clicking on verify user button sent to you on your email'
