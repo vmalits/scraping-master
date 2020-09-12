@@ -13,6 +13,8 @@ $ `php artisan jwt:secret`
 
 $ `./dc.sh composer install`
 
+$ `./dc.sh php artisan test`
+
 # Info
 project running on: `http://localhost:9999`
 

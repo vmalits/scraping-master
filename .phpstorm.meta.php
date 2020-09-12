@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2020-07-12 13:47:17.
+    * Generated on 2020-09-03 17:27:07.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -84,6 +84,7 @@ namespace PHPSTORM_META {
         'command.listener.make' => \Illuminate\Foundation\Console\ListenerMakeCommand::class,
         'command.mail.make' => \Illuminate\Foundation\Console\MailMakeCommand::class,
         'command.make:solution' => \Facade\Ignition\Commands\SolutionMakeCommand::class,
+        'command.make:solution-provider' => \Facade\Ignition\Commands\SolutionProviderMakeCommand::class,
         'command.middleware.make' => \Illuminate\Routing\Console\MiddlewareMakeCommand::class,
         'command.migrate' => \Illuminate\Database\Console\Migrations\MigrateCommand::class,
         'command.migrate.fresh' => \Illuminate\Database\Console\Migrations\FreshCommand::class,
@@ -243,6 +244,7 @@ namespace PHPSTORM_META {
         'command.listener.make' => \Illuminate\Foundation\Console\ListenerMakeCommand::class,
         'command.mail.make' => \Illuminate\Foundation\Console\MailMakeCommand::class,
         'command.make:solution' => \Facade\Ignition\Commands\SolutionMakeCommand::class,
+        'command.make:solution-provider' => \Facade\Ignition\Commands\SolutionProviderMakeCommand::class,
         'command.middleware.make' => \Illuminate\Routing\Console\MiddlewareMakeCommand::class,
         'command.migrate' => \Illuminate\Database\Console\Migrations\MigrateCommand::class,
         'command.migrate.fresh' => \Illuminate\Database\Console\Migrations\FreshCommand::class,
@@ -402,6 +404,7 @@ namespace PHPSTORM_META {
         'command.listener.make' => \Illuminate\Foundation\Console\ListenerMakeCommand::class,
         'command.mail.make' => \Illuminate\Foundation\Console\MailMakeCommand::class,
         'command.make:solution' => \Facade\Ignition\Commands\SolutionMakeCommand::class,
+        'command.make:solution-provider' => \Facade\Ignition\Commands\SolutionProviderMakeCommand::class,
         'command.middleware.make' => \Illuminate\Routing\Console\MiddlewareMakeCommand::class,
         'command.migrate' => \Illuminate\Database\Console\Migrations\MigrateCommand::class,
         'command.migrate.fresh' => \Illuminate\Database\Console\Migrations\FreshCommand::class,
@@ -561,6 +564,7 @@ namespace PHPSTORM_META {
         'command.listener.make' => \Illuminate\Foundation\Console\ListenerMakeCommand::class,
         'command.mail.make' => \Illuminate\Foundation\Console\MailMakeCommand::class,
         'command.make:solution' => \Facade\Ignition\Commands\SolutionMakeCommand::class,
+        'command.make:solution-provider' => \Facade\Ignition\Commands\SolutionProviderMakeCommand::class,
         'command.middleware.make' => \Illuminate\Routing\Console\MiddlewareMakeCommand::class,
         'command.migrate' => \Illuminate\Database\Console\Migrations\MigrateCommand::class,
         'command.migrate.fresh' => \Illuminate\Database\Console\Migrations\FreshCommand::class,
@@ -720,6 +724,7 @@ namespace PHPSTORM_META {
         'command.listener.make' => \Illuminate\Foundation\Console\ListenerMakeCommand::class,
         'command.mail.make' => \Illuminate\Foundation\Console\MailMakeCommand::class,
         'command.make:solution' => \Facade\Ignition\Commands\SolutionMakeCommand::class,
+        'command.make:solution-provider' => \Facade\Ignition\Commands\SolutionProviderMakeCommand::class,
         'command.middleware.make' => \Illuminate\Routing\Console\MiddlewareMakeCommand::class,
         'command.migrate' => \Illuminate\Database\Console\Migrations\MigrateCommand::class,
         'command.migrate.fresh' => \Illuminate\Database\Console\Migrations\FreshCommand::class,
@@ -879,6 +884,7 @@ namespace PHPSTORM_META {
         'command.listener.make' => \Illuminate\Foundation\Console\ListenerMakeCommand::class,
         'command.mail.make' => \Illuminate\Foundation\Console\MailMakeCommand::class,
         'command.make:solution' => \Facade\Ignition\Commands\SolutionMakeCommand::class,
+        'command.make:solution-provider' => \Facade\Ignition\Commands\SolutionProviderMakeCommand::class,
         'command.middleware.make' => \Illuminate\Routing\Console\MiddlewareMakeCommand::class,
         'command.migrate' => \Illuminate\Database\Console\Migrations\MigrateCommand::class,
         'command.migrate.fresh' => \Illuminate\Database\Console\Migrations\FreshCommand::class,
@@ -1038,6 +1044,7 @@ namespace PHPSTORM_META {
         'command.listener.make' => \Illuminate\Foundation\Console\ListenerMakeCommand::class,
         'command.mail.make' => \Illuminate\Foundation\Console\MailMakeCommand::class,
         'command.make:solution' => \Facade\Ignition\Commands\SolutionMakeCommand::class,
+        'command.make:solution-provider' => \Facade\Ignition\Commands\SolutionProviderMakeCommand::class,
         'command.middleware.make' => \Illuminate\Routing\Console\MiddlewareMakeCommand::class,
         'command.migrate' => \Illuminate\Database\Console\Migrations\MigrateCommand::class,
         'command.migrate.fresh' => \Illuminate\Database\Console\Migrations\FreshCommand::class,
@@ -1197,6 +1204,7 @@ namespace PHPSTORM_META {
         'command.listener.make' => \Illuminate\Foundation\Console\ListenerMakeCommand::class,
         'command.mail.make' => \Illuminate\Foundation\Console\MailMakeCommand::class,
         'command.make:solution' => \Facade\Ignition\Commands\SolutionMakeCommand::class,
+        'command.make:solution-provider' => \Facade\Ignition\Commands\SolutionProviderMakeCommand::class,
         'command.middleware.make' => \Illuminate\Routing\Console\MiddlewareMakeCommand::class,
         'command.migrate' => \Illuminate\Database\Console\Migrations\MigrateCommand::class,
         'command.migrate.fresh' => \Illuminate\Database\Console\Migrations\FreshCommand::class,
