@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\QueryFilters\Filterable;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -27,6 +28,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Proxy extends Model
 {
+    use Filterable;
+
     protected $fillable = ['type', 'ip', 'port'];
 
     public const TYPE_HTTP = 'http';
@@ -40,9 +43,4 @@ class Proxy extends Model
         self::TYPE_SOCKS_4,
         self::TYPE_SOCKS_5
     ];
-
-    public function scopeFilter($builder, $filters)
-    {
-        return $filters->apply($builder);
-    }
 }

@@ -25,10 +25,10 @@ class ProxyControllerTest extends TestCase
             ['*']
         );
         $proxy = factory(Proxy::class)->create();
-        $this->getJson('/api/proxies')
-            ->assertJsonFragment([
-                'type' => $proxy->type,
-            ])->assertOk();
+        $response = $this->getJson('/api/proxies');
+        $response->assertJsonFragment([
+            'type' => $proxy->type,
+        ])->assertOk();
     }
 
     public function test_it_adds_new_proxy(): void

@@ -8,7 +8,6 @@ use App\Http\Resources\ProxyResource;
 use App\Models\Proxy;
 use App\QueryFilters\ProxyFilter;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class ProxyController extends Controller
@@ -143,7 +142,7 @@ class ProxyController extends Controller
      *      )
      * )
      */
-    public function show(Proxy $proxy)
+    public function show(Proxy $proxy): ProxyResource
     {
         return new ProxyResource($proxy);
     }
@@ -241,10 +240,12 @@ class ProxyController extends Controller
      *      )
      * )
      */
-    public function destroy(Proxy $proxy)
+    public function destroy(Proxy $proxy): JsonResponse
     {
         $proxy->delete();
-        return response(null, Response::HTTP_NO_CONTENT);
+        return \response()
+            ->json()
+            ->setStatusCode(Response::HTTP_NO_CONTENT);
     }
 
 
