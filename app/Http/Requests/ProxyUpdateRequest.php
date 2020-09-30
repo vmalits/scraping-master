@@ -27,7 +27,7 @@ class ProxyUpdateRequest extends FormRequest
     {
         return [
             'type' => ['required', 'string', new ProxyType()],
-            'ip' => ['required', 'ipv4', new ProxyUniqueFields($this->port)],
+            'ip' => ['required', 'ipv4'],
             'port' => ['required', 'numeric'],
         ];
     }

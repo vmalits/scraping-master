@@ -110,9 +110,9 @@ class ProxyController extends Controller
     public function store(ProxyStoreRequest $request)
     {
         $proxy = Proxy::firstOrCreate($request->validated());
-        CheckProxy::dispatch($proxy);
-//            ->onConnection('redis')
-//            ->onQueue('check-proxy');
+        CheckProxy::dispatch($proxy)
+            ->onConnection('redis')
+            ->onQueue('proxies');
         return (new ProxyResource($proxy))
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
@@ -210,8 +210,9 @@ class ProxyController extends Controller
     public function update(ProxyUpdateRequest $request, Proxy $proxy)
     {
         $proxy->update($request->validated());
-        CheckProxy::dispatch($proxy)->onConnection('redis');
-//        CheckProxy::dispatch($proxy);
+        CheckProxy::dispatch($proxy)
+            ->onConnection('redis')
+            ->onQueue('proxies');
         return (new ProxyResource($proxy))
             ->response()
             ->setStatusCode(Response::HTTP_OK);
