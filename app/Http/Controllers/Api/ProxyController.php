@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProxyRequest;
+use App\Http\Requests\ProxyStoreRequest;
+use App\Http\Requests\ProxyUpdateRequest;
 use App\Http\Resources\ProxyResource;
+use App\Jobs\CheckProxy;
 use App\Models\Proxy;
 use App\QueryFilters\ProxyFilter;
 use Illuminate\Http\JsonResponse;
@@ -43,6 +45,13 @@ class ProxyController extends Controller
      *          type="string"
      *        )
      *      ),
+     *      @OA\Parameter(
+     *       name="active",
+     *       in="query",
+     *      @OA\Schema(
+     *          type="bool"
+     *        )
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -60,7 +69,9 @@ class ProxyController extends Controller
      */
     public function index(ProxyFilter $filters)
     {
-        return ProxyResource::collection(Proxy::filter($filters)->paginate(5));
+        return ProxyResource::collection(
+            Proxy::filter($filters)->paginate(5)
+        );
     }
 
     /**
@@ -96,9 +107,12 @@ class ProxyController extends Controller
      *      )
      * )
      */
-    public function store(ProxyRequest $request)
+    public function store(ProxyStoreRequest $request)
     {
         $proxy = Proxy::firstOrCreate($request->validated());
+        CheckProxy::dispatch($proxy);
+//            ->onConnection('redis')
+//            ->onQueue('check-proxy');
         return (new ProxyResource($proxy))
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
@@ -147,7 +161,6 @@ class ProxyController extends Controller
         return new ProxyResource($proxy);
     }
 
-
     /**
      * @OA\Put(
      *      path="/proxy/{id}",
@@ -194,9 +207,11 @@ class ProxyController extends Controller
      *      )
      * )
      */
-    public function update(ProxyRequest $request, Proxy $proxy)
+    public function update(ProxyUpdateRequest $request, Proxy $proxy)
     {
         $proxy->update($request->validated());
+        CheckProxy::dispatch($proxy)->onConnection('redis');
+//        CheckProxy::dispatch($proxy);
         return (new ProxyResource($proxy))
             ->response()
             ->setStatusCode(Response::HTTP_OK);
@@ -247,7 +262,6 @@ class ProxyController extends Controller
             ->json()
             ->setStatusCode(Response::HTTP_NO_CONTENT);
     }
-
 
     /**
      * @OA\Get(
