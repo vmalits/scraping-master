@@ -43,4 +43,13 @@ class Proxy extends Model
         self::TYPE_SOCKS_4,
         self::TYPE_SOCKS_5
     ];
+
+    protected $casts = [
+        'active' => 'boolean'
+    ];
+
+    public function getAddressAttribute(): string
+    {
+        return "{$this->ip}:$this->port";
+    }
 }

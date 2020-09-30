@@ -52,4 +52,14 @@ class Proxy
      * @var string
      */
     private $type;
+
+    /**
+     * @OA\Property(
+     *     title="active",
+     *     description="active",
+     * )
+     *
+     * @var bool
+     */
+    private $active;
 }

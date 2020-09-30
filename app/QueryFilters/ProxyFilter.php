@@ -18,4 +18,9 @@ class ProxyFilter extends BaseQueryFilter
     {
         $this->builder->where('port', $value);
     }
+
+    public function active(string $value): void
+    {
+        $this->builder->where('active', $value);
+    }
 }

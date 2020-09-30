@@ -6,7 +6,7 @@ use App\Rules\ProxyType;
 use App\Rules\ProxyUniqueFields;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProxyRequest extends FormRequest
+class ProxyStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

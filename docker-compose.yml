@@ -53,3 +53,8 @@ services:
       environment:
         - PHP_IDE_CONFIG=serverName=docker-server
 
+    redis:
+      image: redis:alpine
+      container_name: scraping-master-redis
+      ports:
+        - "6379:6379"

@@ -493,6 +493,13 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "name": "active",
+                        "in": "query",
+                        "schema": {
+                            "type": "bool"
+                        }
                     }
                 ],
                 "responses": {
@@ -830,6 +837,11 @@
                         "title": "type",
                         "description": "type",
                         "type": "string"
+                    },
+                    "active": {
+                        "title": "active",
+                        "description": "active",
+                        "type": "boolean"
                     }
                 },
                 "type": "object"
